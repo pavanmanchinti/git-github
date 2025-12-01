@@ -1,3 +1,4 @@
+📘 Git & GitHub Full Course – Complete Beginner to Advanced Guide
 1. 📌 Introduction to Git & GitHub
 What is Git?
 
@@ -6,11 +7,12 @@ Git is a distributed version control system used to track code changes and colla
 What is GitHub?
 
 GitHub is a cloud-based hosting platform for Git repositories.
-Features include:
+
+Features of GitHub
 
 Source Code Management
 
-Collaboration tools
+Collaboration Tools
 
 GitHub Actions
 
@@ -39,10 +41,10 @@ git init
 This creates the hidden .git folder.
 
 4. 🧱 Git Essentials
-Basic Lifecycle
+Basic Git Lifecycle
 Working Directory → Staging Area → Local Repo → Remote Repo
 
-Four important states in Git:
+Four File States in Git
 
 Untracked
 
@@ -67,7 +69,7 @@ Command	Explanation
 git add file.py	Add one file
 git add *.txt	Add all .txt files
 git add *	Add all except hidden files
-git add .	Add everything including hidden
+git add .	Add everything including hidden files
 Remove from Staging
 git reset filename
 
@@ -84,7 +86,7 @@ git log
 git log -2
 git log --oneline
 
-View Files Changed in Commit
+View Files Changed in a Commit
 git show --pretty="" --name-only
 
 8. 🌿 Branching & Switching
@@ -105,24 +107,22 @@ Merge Branch
 git checkout master
 git merge dev
 
-
-If conflict occurs, you will see:
-
+Example Conflict
 <<<<<<< HEAD
 content from current branch
 =======
 content from merged branch
 >>>>>>> branchname
 
-Steps to Fix
+Steps to Fix Conflict
 
 Open file
 
 Remove conflict markers
 
-Keep required content
+Keep correct content
 
-Commit
+Commit fix
 
 git commit -am "resolved merge conflict"
 
@@ -143,7 +143,7 @@ Pull Updates
 git pull
 git pull origin dev
 
-Fetch remote changes (without merge)
+Fetch Without Merge
 git fetch
 
 12. 🧹 Cleaning & Resetting
@@ -151,7 +151,7 @@ Clean Untracked Files
 git clean -n
 git clean -f
 
-Reset Commit
+Reset Last Commit
 git reset --soft HEAD~1
 git reset --hard HEAD~1
 
@@ -159,7 +159,7 @@ git reset --hard HEAD~1
 Command	Meaning
 git log --oneline	Compact history
 git add -p	Add chunks interactively
-git diff --name-only	Only filenames changed
+git diff --name-only	Only show filenames
 git show HEAD	Show last commit
 14. 🏆 Git Best Practices (DevOps Standards)
 
@@ -167,35 +167,35 @@ Commit frequently
 
 Use meaningful commit messages
 
-Never push to master/main directly
+Never push to main/master directly
 
-Enable branch protection rules
+Enable branch protection
 
 Use Pull Requests (PRs)
 
-Merge only after proper review
+Merge only after review
 
-Use .gitignore for large/secret files
+Use .gitignore for sensitive files
 
 Use feature branches
 
-Perform regular repo cleanups
+Perform periodic cleanup
 
 15. ❓ Git Interview Questions (DevOps)
 
-What is the difference between Git and GitHub?
+Difference between Git and GitHub?
 
 Explain git fetch vs git pull.
 
-What is a merge conflict and how do you solve it?
+What is a merge conflict?
 
-What is the purpose of .gitignore?
+Purpose of .gitignore?
 
-What are HEAD, working tree, staging area?
+Explain HEAD, staging area, working tree.
 
-What is a detached HEAD state?
+What is detached HEAD?
 
-Explain rebase vs merge.
+Rebase vs merge?
 
 16. 🧾 Quick Git Cheat Sheet
 git init
