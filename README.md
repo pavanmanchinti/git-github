@@ -1,268 +1,214 @@
-1. Creating a Project Directory
-Command
-mkdir git-practice
-cd git-practice/
-ls -ltrh
+1. 📌 Introduction to Git & GitHub
+What is Git?
 
-Explanation
+Git is a distributed version control system used to track code changes and collaborate efficiently.
 
-Creates a folder, moves into it, and lists all files in long format.
+What is GitHub?
 
-2. Checking Git Version
-Command
+GitHub is a cloud-based hosting platform for Git repositories.
+Features include:
+
+Source Code Management
+
+Collaboration tools
+
+GitHub Actions
+
+CI/CD
+
+Pull Requests & Code Reviews
+
+2. 🛠️ Install & Setup
+Check Git Version
 git --version
 git -v
 
-Explanation
+Set Username & Email
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
 
-These commands display the installed Git version.
+3. 📁 Creating Projects
+Create a Directory
+mkdir git-practice
+cd git-practice
 
-Sample Output
-
-git version 2.42.0.windows.1
-
-3. Initializing Git
-Command
+Initialize Git Repository
 git init
-ls -ltrha
 
-Explanation
 
-Initializes a new Git repository and shows hidden files including .git.
+This creates the hidden .git folder.
 
-4. Creating Files
-Commands
-touch jenkins.txt
-vi jenkins.txt
+4. 🧱 Git Essentials
+Basic Lifecycle
+Working Directory → Staging Area → Local Repo → Remote Repo
+
+Four important states in Git:
+
+Untracked
+
+Modified
+
+Staged
+
+Committed
+
+5. 📄 Creating & Managing Files
+Create Files
+touch file1.txt
 vi demo.txt
 cat > dockerfile
-cat > python.py
 
-Explanation
-
-Creates files and opens them for editing.
-cat > file overwrites content until you press CTRL + D.
-
-5. Checking File Status
-Command
+View Status
 git status
 
-Explanation
+6. 📌 Staging, Restoring & Committing
+Add Files to Staging
+Command	Explanation
+git add file.py	Add one file
+git add *.txt	Add all .txt files
+git add *	Add all except hidden files
+git add .	Add everything including hidden
+Remove from Staging
+git reset filename
 
-Shows which files are untracked, staged, or modified.
+Restore File
+git restore filename
 
-Sample Output
+Commit Changes
+git commit -m "Meaningful commit message"
+git commit -am "Quick commit for modified files"
 
-Untracked files:
-  python.py
-  jenkins.txt
-  demo.txt
-
-6. Adding Files to Staging Area
-Commands
-git add python.py
-git add *.txt
-git add .
-
-Explanation
-Command	Description
-git add python.py	Adds only the file python.py
-git add *.txt	Adds all .txt files
-git add *	Adds all files in the directory except dotfiles
-git add .	Adds all files including hidden files
-7. Removing a File from Staging
-Command
-git reset demo.txt
-
-Explanation
-
-Moves demo.txt back to the working area (unstaged).
-
-8. Restore a File
-Command
-git restore demo.txt
-
-Explanation
-
-Restores demo.txt to the last committed version.
-
-9. Committing Changes
-Commands
-git commit -m "Add files from staging area to local repo"
-git commit -am "feat: commit new changes"
-git commit -am 'fix docker file'
-
-Explanation
-
-Saves your changes into the repository with a message.
-
-10. Viewing Commit Logs
-Commands
+7. 🔍 Viewing History & Logs
+Basic Logs
 git log
 git log -2
-git log -n 2
+git log --oneline
 
-Explanation
+View Files Changed in Commit
+git show --pretty="" --name-only
 
-Shows commit history.
+8. 🌿 Branching & Switching
+Create Branch
+git branch dev
 
-11. Viewing Changed Files in a Commit
-Commands
-git log --pretty="" --name-only
-git show --pretty="" --name-only <commit-id>
+Switch Branch
+git checkout dev
 
-Explanation
+Create + Switch
+git checkout -b staging
 
-Shows filenames modified in commits.
+Rename Branch
+git branch -m old new
 
-Difference: Git Log vs Git Show
-Git Log
+9. ⚔️ Merge & Conflict Resolution
+Merge Branch
+git checkout master
+git merge dev
 
-Shows a list of commits.
 
-Displays commit messages, authors, and timestamps.
+If conflict occurs, you will see:
 
-Does NOT show changes by default.
+<<<<<<< HEAD
+content from current branch
+=======
+content from merged branch
+>>>>>>> branchname
 
-Git Show
+Steps to Fix
 
-Shows the details of a single commit.
+Open file
 
-Displays diffs, file changes, insertions, and deletions.
+Remove conflict markers
 
-Example
+Keep required content
 
-git show 94c30fefa5a19df2f7ab226905852f706b7b3dcb
+Commit
 
-Difference: git restore vs git checkout file
-git restore
+git commit -am "resolved merge conflict"
 
-Modern command (recommended).
+10. 🌐 Remote Repositories
+Add Remote
+git remote add origin https://github.com/user/repo.git
 
-Restores file to last commit.
-
-Does not switch branches.
-
-git checkout file
-
-Older command.
-
-Can restore files.
-
-Can also switch branches (confusing for beginners).
-
-12. Adding Remote Repositories
-Commands
-git remote add origin https://github.com/pavanmanchinti/git-github.git
+Show Remotes
 git remote -v
 
-13. Pushing to Remote
-Commands
+11. 🚀 Push, Pull & Fetch
+Push Code
 git push origin master
-git push jio master
-git push jio dev
-git push jio --all
+git push origin dev
+git push origin --all
 
-Explanation
+Pull Updates
+git pull
+git pull origin dev
 
-Uploads your local commits to GitHub.
+Fetch remote changes (without merge)
+git fetch
 
-14. Cleaning Untracked Files
+12. 🧹 Cleaning & Resetting
+Clean Untracked Files
 git clean -n
 git clean -f
 
+Reset Commit
+git reset --soft HEAD~1
+git reset --hard HEAD~1
 
--n = show what will be deleted (safe)
-
--f = force delete untracked files
-
-15. Resetting Files
-git reset deploy.yml
-git reset jenkins.yml
-git reset
-
-16. Creating Branches
-Commands
-git branch
-git branch dev
-git checkout dev
-git checkout -b stag
-git checkout -b prod
-
-17. Checking Differences Between Branches
-git diff master dev
-git diff --name-only master dev
-
-18. Pushing a Branch
-git push jio dev
-
-19. Pulling Updates
-git pull
-git pull jio dev
-
-MERGE CONFLICT PRACTICE
-Step 1 — Edit same file in both branches
-vi jenkins.txt
-git commit -am "merge conflict"
-
-Step 2 — Switch to other branch
-git checkout dev
-vi jenkins.txt
-git commit -m "merge conflict"
-
-Step 3 — Merge branches
-git merge master
-
-
-A conflict appears inside the file:
-
-<<<<<<< HEAD
-content from dev
-=======
-content from master
->>>>>>> master
-
-Step 4 — Resolve it
-
-Open file → remove conflict markers → keep correct content.
-
-Step 5 — Commit merge
-git commit -am "solve merge conflict"
-git push jio dev
-
-20. Deleting Branches
-git branch -d prod
-git branch -d stag
-
-21. Renaming Branches
-git branch -m dev development
-
-22. Counting Branches
-Local Branch Count
-git branch | wc -l
-
-Remote Branch Count
-git branch -r | wc -l
-
-23. Removing Remote Branch
-git push jio :dev
-
-24. Viewing Entire History
-history
-clear
-
-Summary of Important Differences
-Git Add . vs *
+13. ⏩ Useful Git Shortcuts
 Command	Meaning
-git add .	Adds all changes including hidden files (.env, .gitignore).
-git add *	Adds all non-hidden files (skips dotfiles).
-git add *.py	Adds all Python files only.
-Git Log vs Git Show
-Command	Purpose
-git log	Shows commit history.
-git show <commit>	Shows details and diffs of one commit.
-Git Restore vs Git Checkout
-Command	Purpose
-git restore <file>	Restores file to last commit.
-git checkout <branch>	Switches branches.
-git checkout <file>	Restores file (old method).
+git log --oneline	Compact history
+git add -p	Add chunks interactively
+git diff --name-only	Only filenames changed
+git show HEAD	Show last commit
+14. 🏆 Git Best Practices (DevOps Standards)
+
+Commit frequently
+
+Use meaningful commit messages
+
+Never push to master/main directly
+
+Enable branch protection rules
+
+Use Pull Requests (PRs)
+
+Merge only after proper review
+
+Use .gitignore for large/secret files
+
+Use feature branches
+
+Perform regular repo cleanups
+
+15. ❓ Git Interview Questions (DevOps)
+
+What is the difference between Git and GitHub?
+
+Explain git fetch vs git pull.
+
+What is a merge conflict and how do you solve it?
+
+What is the purpose of .gitignore?
+
+What are HEAD, working tree, staging area?
+
+What is a detached HEAD state?
+
+Explain rebase vs merge.
+
+16. 🧾 Quick Git Cheat Sheet
+git init
+git clone <repo>
+git status
+git add .
+git commit -m "message"
+git push origin master
+git pull
+git branch
+git checkout -b newbranch
+git merge dev
+git log --oneline
+git diff
+git reset
+git restore
